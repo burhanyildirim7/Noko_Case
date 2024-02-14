@@ -6,17 +6,14 @@ using UnityEngine;
 
 public class SpawnedAssetControl : MonoBehaviour
 {
-    [Header("Olusan Urunlerin Dizilecegi Noktalar")]
     public List<Transform> _emptyTransforms = new List<Transform>();
-    [Header("Ýcerisindeki Spawn Script")]
     [SerializeField] private TransformerCraft _transformerCraft;
-    [Header("Kontrol Amacli Burayi Elleme")]
     public List<GameObject> _craftedAssets = new List<GameObject>();
-    [Header("Spawn Olacak Urun Parent")]
     public GameObject _parent;
 
 
     public PlayerStackController _playerStackController;
+    public AIStackController _aiStackController;
     public Rigidbody _playerRigidbody;
 
     private float _timer;
@@ -155,6 +152,116 @@ public class SpawnedAssetControl : MonoBehaviour
 
                 }
             }
+        }
+        else
+        {
+
+        }
+
+        if (other.gameObject.tag == "AICharacter")
+        {
+
+            if (_aiStackController._spawnedAssetsInBag.Count > 0)
+            {
+                _timer += Time.deltaTime;
+
+                if (_craftedAssets.Count < 60)
+                {
+                    if (_timer > 0.05f)
+                    {
+                        if (_craftedAssets.Count == _assetAmount)
+                        {
+                            _product = _aiStackController._spawnedAssetsInBag[_aiStackController._spawnedAssetsInBag.Count - 1].gameObject;
+                            _aiStackController.SpawnedAssetDraw(_emptyTransforms[_craftedAssets.Count]);
+                            _craftedAssets.Add(_product);
+                            _product.transform.parent = _parent.transform;
+                            _assetAmount++;
+
+                            _timer = 0;
+                        }
+                        else
+                        {
+                            for (int i = 0; i < _craftedAssets.Count; i++)
+                            {
+                                if (_craftedAssets[i] == null)
+                                {
+                                    _product = _aiStackController._spawnedAssetsInBag[_aiStackController._spawnedAssetsInBag.Count - 1].gameObject;
+                                    _craftedAssets[i] = _product;
+                                    _emptySpawnPoint = i;
+
+                                    _aiStackController.SpawnedAssetDraw(_emptyTransforms[_emptySpawnPoint]);
+                                    _product.transform.parent = _parent.transform;
+                                    _assetAmount++;
+
+                                    break;
+                                }
+                                else if (_craftedAssets[i].transform.parent != _parent.transform)
+                                {
+                                    _product = _aiStackController._spawnedAssetsInBag[_aiStackController._spawnedAssetsInBag.Count - 1].gameObject;
+                                    _craftedAssets[i] = _product;
+                                    _emptySpawnPoint = i;
+
+                                    _aiStackController.SpawnedAssetDraw(_emptyTransforms[_emptySpawnPoint]);
+                                    _product.transform.parent = _parent.transform;
+                                    _assetAmount++;
+
+                                    break;
+                                }
+                                else
+                                {
+
+                                }
+                            }
+
+                            _timer = 0;
+
+                        }
+                    }
+                }
+                else
+                {
+                    if (_timer > 0.05f)
+                    {
+                        for (int i = 0; i < _craftedAssets.Count; i++)
+                        {
+                            if (_craftedAssets[i] == null)
+                            {
+                                _product = _aiStackController._spawnedAssetsInBag[_aiStackController._spawnedAssetsInBag.Count - 1].gameObject;
+                                _craftedAssets[i] = _product;
+                                _emptySpawnPoint = i;
+
+                                _aiStackController.SpawnedAssetDraw(_emptyTransforms[_emptySpawnPoint]);
+                                _product.transform.parent = _parent.transform;
+                                _assetAmount++;
+
+                                break;
+                            }
+                            else if (_craftedAssets[i].transform.parent != _parent.transform)
+                            {
+                                _product = _aiStackController._spawnedAssetsInBag[_aiStackController._spawnedAssetsInBag.Count - 1].gameObject;
+                                _craftedAssets[i] = _product;
+                                _emptySpawnPoint = i;
+
+                                _aiStackController.SpawnedAssetDraw(_emptyTransforms[_emptySpawnPoint]);
+                                _product.transform.parent = _parent.transform;
+                                _assetAmount++;
+
+                                break;
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        _timer = 0;
+                    }
+                }
+            }
+            else
+            {
+
+            }
+
         }
         else
         {

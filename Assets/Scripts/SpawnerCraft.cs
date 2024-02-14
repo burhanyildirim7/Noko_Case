@@ -5,18 +5,13 @@ using UnityEngine;
 
 public class SpawnerCraft : MonoBehaviour
 {
-    [Header("Urunlerin Spawn Olacagi Nokta")]
     public Transform _assetSpawnPoint;
-    [Header("Spawn Olacak Urun Prefabi")]
     public GameObject _assetPrefab;
-    [Header("Olusan Urunlerin Dizilecegi Noktalar")]
     public List<Transform> _emptyTransforms = new List<Transform>();
-    [Header("Urunlerin Olusma Hizi")]
     public float _spawnRate;
-    [Header("Spawn Olacak Urun Parent")]
     public GameObject _parent;
-    [Header("Kontrol Amacli Burayi Elleme")]
     public List<GameObject> _craftedAssets = new List<GameObject>();
+    [SerializeField] private Animator _animator;
 
 
     private float _timer;
@@ -127,6 +122,15 @@ public class SpawnerCraft : MonoBehaviour
                 }
                 _timer = 0;
             }
+        }
+
+        if (_assetAmount < 60)
+        {
+            _animator.SetBool("Work", true);
+        }
+        else
+        {
+            _animator.SetBool("Work", false);
         }
     }
 }

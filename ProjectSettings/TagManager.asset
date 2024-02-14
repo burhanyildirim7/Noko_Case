@@ -11,6 +11,8 @@ TagManager:
   - Transformer
   - ReadySpawnedAsset
   - ReadyTransformedAsset
+  - AICharacter
+  - Point
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TakeTransformedAssetScript : MonoBehaviour
 {
     public PlayerStackController _playerStackController;
+    public AIStackController _aiStackController;
     public TransformerCraft _transformerCraft;
     public Rigidbody _playerRigidbody;
 
@@ -36,6 +37,35 @@ public class TakeTransformedAssetScript : MonoBehaviour
 
                 }
             }
+        }
+        else
+        {
+
+        }
+
+        if (other.gameObject.tag == "AICharacter")
+        {
+
+            if (_transformerCraft._craftedAssets.Count > 0 && _transformerCraft._assetAmount > 0)
+            {
+                _timer += Time.deltaTime;
+
+                if (_timer > 0.05f)
+                {
+                    _aiStackController.TakeTransformedAsset(_transformerCraft._craftedAssets[_transformerCraft._assetAmount - 1]);
+                    _timer = 0;
+                }
+                else
+                {
+
+                }
+
+            }
+            else
+            {
+
+            }
+
         }
         else
         {

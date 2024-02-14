@@ -6,6 +6,7 @@ using UnityEngine;
 public class TakeSpawnedAssetScript : MonoBehaviour
 {
     public PlayerStackController _playerStackController;
+    public AIStackController _aiStackController;
     public SpawnerCraft _spawnerCraft;
     public Rigidbody _playerRigidbody;
 
@@ -37,6 +38,35 @@ public class TakeSpawnedAssetScript : MonoBehaviour
 
                 }
             }
+        }
+        else
+        {
+
+        }
+
+        if (other.gameObject.tag == "AICharacter")
+        {
+
+            if (_spawnerCraft._craftedAssets.Count > 0 && _spawnerCraft._assetAmount > 0)
+            {
+                _timer += Time.deltaTime;
+
+                if (_timer > 0.05f)
+                {
+                    _aiStackController.TakeSpawnedAsset(_spawnerCraft._craftedAssets[_spawnerCraft._assetAmount - 1]);
+                    _timer = 0;
+                }
+                else
+                {
+
+                }
+
+            }
+            else
+            {
+
+            }
+
         }
         else
         {

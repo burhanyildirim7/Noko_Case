@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class BuildScript : MonoBehaviour
 {
-    [Header("Olusan Urunlerin Dizilecegi Noktalar")]
     public List<Transform> _emptyTransforms = new List<Transform>();
-    [Header("Kontrol Amacli Burayi Elleme")]
     public List<GameObject> _craftedAssets = new List<GameObject>();
-    [Header("Spawn Olacak Urun Parent")]
     public GameObject _parent;
 
 

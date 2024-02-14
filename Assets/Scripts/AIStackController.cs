@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStackController : MonoBehaviour
+public class AIStackController : MonoBehaviour
 {
     [SerializeField] private List<Transform> _emptySpawnedTransforms = new List<Transform>();
     [SerializeField] private List<Transform> _emptyTransformedTransforms = new List<Transform>();

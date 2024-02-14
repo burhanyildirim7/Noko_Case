@@ -5,19 +5,12 @@ using UnityEngine;
 
 public class TransformerCraft : MonoBehaviour
 {
-    [Header("Urunlerin Spawn Olacagi Nokta")]
     public Transform _assetSpawnPoint;
-    [Header("Spawn Olacak Urun Prefabi")]
     public GameObject _assetPrefab;
-    [Header("Olusan Urunlerin Dizilecegi Noktalar")]
     public List<Transform> _emptyTransforms = new List<Transform>();
-    [Header("Urunlerin Olusma Hizi")]
     public float _spawnRate;
-    [Header("Kontrol Amacli Burayi Elleme")]
     public List<GameObject> _craftedAssets = new List<GameObject>();
-    [Header("Spawn Olacak Urun Parent")]
     public GameObject _parent;
-    [Header("Uretim Icin Gerekli Urun Sayisi")]
     public int _needProduct;
 
     public Transform _takeAssetPoint;
